@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
-from utils import load_json_data, calculate_score, get_feedback, get_recommendation, get_category_description
+from utils import load_json_data, calculate_score, get_feedback, get_recommendation, get_category_description, get_category_recommendations
 
 # Page configuration
 st.set_page_config(
@@ -252,8 +252,24 @@ elif st.session_state.step == len(questions) + 1:
         st.progress(progress)
         st.markdown("<h1 style='text-align: center; font-size: 24px;'>Resultados da Avaliação</h1>", unsafe_allow_html=True)
         
-        # Clinical Overview
-        st.markdown("<h2 style='text-align: center; font-size: 20px;'>Perfil Clínico</h2>", unsafe_allow_html=True)
+        # Clinical Overview with Severity Indicators
+        avg_score = sum(scores.values()) / len(scores)
+        severity_level = get_severity_level(avg_score)
+        severity_color = "#FF0000" if avg_score >= 80 else "#FF6B6B" if avg_score >= 70 else "#FFA500" if avg_score >= 40 else "#4CAF50"
+        
+        st.markdown(f"""
+        <div style="text-align: center; margin: 1rem 0;">
+            <h2 style="font-size: 20px;">Nível de Severidade Global</h2>
+            <div style="background-color: {severity_color}; color: white; padding: 1rem; border-radius: 8px; display: inline-block;">
+                <span style="font-size: 24px; font-weight: bold;">{severity_level}</span>
+                <br>
+                <span>Score Global: {avg_score:.1f}%</span>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Enhanced Visualization Section
+        st.markdown("<h2 style='text-align: center; font-size: 20px;'>Análise Comparativa</h2>", unsafe_allow_html=True)
         
         # Radar Chart with clinical thresholds
         radar_fig = create_radar_chart(scores)
@@ -263,8 +279,16 @@ elif st.session_state.step == len(questions) + 1:
         bar_fig = create_bar_chart(scores)
         st.plotly_chart(bar_fig, use_container_width=True)
         
-        # Detailed Clinical Analysis
+        # Clinical Insights
         st.markdown("<h2 style='text-align: center; font-size: 20px;'>Análise Clínica Detalhada</h2>", unsafe_allow_html=True)
+        
+        # Add percentile information
+        percentiles = {
+            'concentracao': min(round(scores['concentracao'] / 0.8), 99),
+            'impulsividade': min(round(scores['impulsividade'] / 0.8), 99),
+            'hiperatividade': min(round(scores['hiperatividade'] / 0.8), 99)
+        }
+        
         for category, score in scores.items():
             severity = get_severity_level(score)
             color = "#FF0000" if score >= 80 else "#FF6B6B" if score >= 70 else "#FFA500" if score >= 40 else "#4CAF50"
@@ -272,9 +296,28 @@ elif st.session_state.step == len(questions) + 1:
             st.markdown(f"""
             <div style="padding: 1.5rem; border-radius: 8px; background-color: #FFFFFF; margin: 1rem 0; border-left: 4px solid {color}">
                 <h4 style="margin: 0 0 1rem 0;">{category.title()}</h4>
-                <p style="margin: 0.5rem 0;"><strong>Nível de Severidade:</strong> {severity} ({score:.1f}%)</p>
-                <p style="margin: 0.5rem 0;"><strong>Padrões Comportamentais:</strong></p>
-                <p style="margin: 0.5rem 0;">{get_category_description(category, severity)}</p>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                    <div>
+                        <strong>Nível de Severidade:</strong> {severity} ({score:.1f}%)
+                        <br>
+                        <strong>Percentil:</strong> {percentiles[category]}
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="background-color: {color}; color: white; padding: 0.25rem 0.5rem; border-radius: 4px;">
+                            {severity}
+                        </span>
+                    </div>
+                </div>
+                <div style="margin: 1rem 0;">
+                    <strong>Padrões Comportamentais:</strong>
+                    <p style="margin: 0.5rem 0;">{get_category_description(category, severity)}</p>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <strong>Recomendações da Ativa-Mente:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        {get_category_recommendations(category, severity)}
+                    </ul>
+                </div>
             </div>
             """, unsafe_allow_html=True)
         
@@ -287,8 +330,25 @@ elif st.session_state.step == len(questions) + 1:
         </div>
         """.format(recommendation), unsafe_allow_html=True)
         
+        # Platform Promotion
+        st.markdown('''
+            <div style="background-color: #1B365D; color: white; padding: 2rem; border-radius: 8px; text-align: center; margin: 2rem 0;">
+                <h2 style="color: white;">Conheça a Ativa-Mente</h2>
+                <p style="font-size: 1.1em; margin: 1rem 0;">
+                    Plataforma especializada para crianças com TDAH, focada em:
+                    <br>• Desenvolvimento da memória
+                    <br>• Melhoria do foco e atenção
+                    <br>• Exercícios cognitivos personalizados
+                </p>
+                <div style="background-color: #FFA500; padding: 1rem; border-radius: 4px; margin-top: 1rem;">
+                    <h3 style="color: #1B365D; margin: 0;">Comece Agora</h3>
+                    <p style="margin: 0.5rem 0;">7 dias grátis de acesso completo</p>
+                </div>
+            </div>
+        ''', unsafe_allow_html=True)
+        
         # Intervention Strategies
-        st.markdown("<h2 style='text-align: center; font-size: 20px;'>Estratégias de Intervenção</h2>", unsafe_allow_html=True)
+        st.markdown("<h2 style='text-align: center; font-size: 20px;'>Soluções Personalizadas</h2>", unsafe_allow_html=True)
         cols = st.columns(len(content['platform_benefits']))
         for col, benefit in zip(cols, content['platform_benefits']):
             with col:
@@ -296,8 +356,14 @@ elif st.session_state.step == len(questions) + 1:
                 <div class="benefit-card">
                     <h3>{benefit['title']}</h3>
                     <p>{benefit['description']}</p>
+                    <div style="margin-top: 1rem;">
+                        <span style="background-color: #FFA500; color: #1B365D; padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold;">
+                            Saiba mais
+                        </span>
+                    </div>
                 </div>
                 """, unsafe_allow_html=True)
+        
         st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown('<div class="navigation-container">', unsafe_allow_html=True)

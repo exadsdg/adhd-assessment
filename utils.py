@@ -216,3 +216,75 @@ def get_category_description(category: str, severity: str) -> str:
         }
     }
     return descriptions[category][severity].strip()
+
+def get_category_recommendations(category: str, severity: str) -> str:
+    """Get specific Ativa-Mente recommendations for each category and severity level."""
+    recommendations = {
+        'concentracao': {
+            'Muito Alto': """
+                <li>Jogos de memória sequencial com dificuldade progressiva</li>
+                <li>Exercícios de atenção sustentada com feedback imediato</li>
+                <li>Atividades de organização e planejamento gamificadas</li>
+            """,
+            'Alto': """
+                <li>Jogos de foco com elementos visuais dinâmicos</li>
+                <li>Exercícios de categorização e ordenação</li>
+                <li>Atividades de rastreamento visual</li>
+            """,
+            'Moderado': """
+                <li>Jogos de memória com complexidade moderada</li>
+                <li>Exercícios de atenção dividida</li>
+                <li>Atividades de organização básica</li>
+            """,
+            'Baixo': """
+                <li>Jogos de manutenção de atenção recreativos</li>
+                <li>Exercícios de reforço cognitivo leve</li>
+                <li>Atividades de desenvolvimento contínuo</li>
+            """
+        },
+        'impulsividade': {
+            'Muito Alto': """
+                <li>Jogos de controle inibitório intensivo</li>
+                <li>Exercícios de autorregulação emocional</li>
+                <li>Atividades de planejamento estratégico</li>
+            """,
+            'Alto': """
+                <li>Jogos de espera e recompensa</li>
+                <li>Exercícios de controle de resposta</li>
+                <li>Atividades de tomada de decisão</li>
+            """,
+            'Moderado': """
+                <li>Jogos de paciência e estratégia</li>
+                <li>Exercícios de autocontrole básico</li>
+                <li>Atividades de reflexão antes da ação</li>
+            """,
+            'Baixo': """
+                <li>Jogos de manutenção do autocontrole</li>
+                <li>Exercícios de reforço comportamental</li>
+                <li>Atividades de desenvolvimento social</li>
+            """
+        },
+        'hiperatividade': {
+            'Muito Alto': """
+                <li>Jogos de controle motor intensivo</li>
+                <li>Exercícios de regulação de energia</li>
+                <li>Atividades de foco com movimento controlado</li>
+            """,
+            'Alto': """
+                <li>Jogos de controle corporal</li>
+                <li>Exercícios de canalização de energia</li>
+                <li>Atividades de ritmo e coordenação</li>
+            """,
+            'Moderado': """
+                <li>Jogos de equilíbrio energia-foco</li>
+                <li>Exercícios de autorregulação básica</li>
+                <li>Atividades físico-cognitivas</li>
+            """,
+            'Baixo': """
+                <li>Jogos de manutenção do equilíbrio</li>
+                <li>Exercícios de desenvolvimento motor</li>
+                <li>Atividades de coordenação avançada</li>
+            """
+        }
+    }
+    return recommendations[category][severity].strip()
