@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
-from utils import load_json_data, calculate_score, get_feedback, get_recommendation
+from utils import load_json_data, calculate_score, get_feedback, get_recommendation, get_category_description
 
 # Page configuration
 st.set_page_config(
@@ -10,6 +10,11 @@ st.set_page_config(
     page_icon="🧠",
     layout="centered"
 )
+
+# Display logo
+st.image("DALL·E 2024-11-05 14.57.07 - Design a logo for a children's platform called 'Ativa-Mente', focused on enhancing focus and attention in young people with ADHD. The logo should be b.webp", 
+        use_container_width=True)
+st.markdown("<br>", unsafe_allow_html=True)  # Add some spacing
 
 # Cache data loading
 @st.cache_data
@@ -45,22 +50,21 @@ def validate_current_step():
 
 def update_step(new_step):
     """Update step with minimal state changes."""
-    if new_step != st.session_state.step:
-        st.session_state.step = new_step
-        st.session_state.current_response = None
-        st.rerun()  # Single rerun here
+    if validate_current_step() and 0 <= new_step <= len(questions) + 2:
+        if new_step != st.session_state.step:
+            st.session_state.step = new_step
+            st.session_state.current_response = None
+            st.experimental_rerun()
 
 def next_step():
     """Handle navigation to next step with validation."""
     if validate_current_step():
-        st.session_state.step += 1
-        st.rerun()  # Single rerun here
+        update_step(st.session_state.step + 1)
 
 def prev_step():
     """Handle navigation to previous step."""
     if st.session_state.step > 0:
-        st.session_state.step -= 1
-        st.rerun()  # Single rerun for consistency
+        update_step(st.session_state.step - 1)
 
 def handle_response(question_id: int, response: str):
     """Handle storing of responses without forcing rerun."""
@@ -136,7 +140,7 @@ if st.session_state.step == 0:
     
     with content_container:
         if st.button("Começar Avaliação", use_container_width=True):
-            update_step(1)
+            next_step()
 
 elif 1 <= st.session_state.step <= len(questions):
     question = questions[st.session_state.step - 1]
@@ -167,7 +171,8 @@ elif 1 <= st.session_state.step <= len(questions):
             if st.button("← Voltar", use_container_width=True, disabled=st.session_state.step == 1):
                 prev_step()
         with col2:
-            if st.button("Próximo →", use_container_width=True, disabled=not validate_current_step()):
+            next_button_label = "Próximo →" if st.session_state.step < len(questions) else "Ver Resultados →"
+            if st.button(next_button_label, use_container_width=True, disabled=not validate_current_step()):
                 next_step()
 
 elif st.session_state.step == len(questions) + 1:
@@ -223,6 +228,15 @@ elif st.session_state.step == len(questions) + 1:
                     <p>{benefit['description']}</p>
                 </div>
                 """, unsafe_allow_html=True)
+
+    with navigation_container:
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.button("← Voltar ao Questionário", use_container_width=True):
+                prev_step()
+        with col2:
+            if st.button("Ver Depoimentos →", use_container_width=True):
+                next_step()
 
 elif st.session_state.step == len(questions) + 2:
     with header_container:
