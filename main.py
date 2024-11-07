@@ -178,12 +178,7 @@ elif 1 <= st.session_state.step <= len(questions):
     st.markdown('</div>', unsafe_allow_html=True)
 
 elif st.session_state.step == len(questions) + 1:
-    # Cache scores calculation
-    @st.cache_data
-    def get_cached_scores(responses_key):
-        return calculate_score(st.session_state.responses)
-    
-    scores = get_cached_scores(str(st.session_state.responses))
+    scores = calculate_score(st.session_state.responses)
     
     with st.container():
         st.markdown('<div class="content-container">', unsafe_allow_html=True)
