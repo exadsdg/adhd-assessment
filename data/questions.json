@@ -32,6 +32,193 @@
                 "medium": "Algumas crianças são naturalmente mais ativas, mas existem formas de ajudá-las a se regular.",
                 "low": "Seu filho parece ter níveis adequados de atividade física."
             }
+        },
+        {
+            "id": 4,
+            "category": "concentracao",
+            "text": "Seu filho tem dificuldade em seguir instruções passo a passo?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "A dificuldade em seguir instruções pode indicar desafios de atenção. A Ativa-Mente possui jogos que trabalham a sequência e compreensão de instruções.",
+                "medium": "Algumas dificuldades com instruções são comuns, mas podem ser melhoradas com prática.",
+                "low": "Seu filho demonstra boa capacidade de seguir instruções."
+            }
+        },
+        {
+            "id": 5,
+            "category": "concentracao",
+            "text": "Com que frequência seu filho perde materiais escolares ou objetos necessários para atividades?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Perder materiais frequentemente pode indicar desafios de organização. A Ativa-Mente oferece exercícios para desenvolver habilidades organizacionais.",
+                "medium": "Ocasionalmente perder itens é normal, mas desenvolver rotinas pode ajudar.",
+                "low": "Seu filho demonstra boas habilidades de organização com seus pertences."
+            }
+        },
+        {
+            "id": 6,
+            "category": "concentracao",
+            "text": "Seu filho se distrai facilmente com estímulos externos (sons, movimentos)?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Alta sensibilidade a distrações pode indicar desafios de atenção. A Ativa-Mente tem exercícios específicos para melhorar o foco em ambientes com estímulos.",
+                "medium": "Algumas distrações são normais, mas podem ser trabalhadas para melhor foco.",
+                "low": "Seu filho demonstra boa capacidade de manter o foco mesmo com distrações."
+            }
+        },
+        {
+            "id": 7,
+            "category": "concentracao",
+            "text": "Seu filho tem dificuldade em organizar tarefas e atividades?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Dificuldades frequentes com organização podem indicar TDAH. A Ativa-Mente oferece ferramentas para desenvolver habilidades de planejamento.",
+                "medium": "Algumas dificuldades com organização são comuns, mas podem ser melhoradas.",
+                "low": "Seu filho demonstra boas habilidades de organização."
+            }
+        },
+        {
+            "id": 8,
+            "category": "concentracao",
+            "text": "Seu filho costuma prestar atenção aos detalhes ou comete erros por descuido?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Dificuldade com detalhes pode indicar desafios de atenção. A Ativa-Mente tem jogos que trabalham a atenção aos detalhes de forma divertida.",
+                "medium": "Alguns erros por descuido são normais, mas podem ser reduzidos com prática.",
+                "low": "Seu filho demonstra boa atenção aos detalhes."
+            }
+        },
+        {
+            "id": 9,
+            "category": "impulsividade",
+            "text": "Seu filho tem dificuldade em esperar sua vez (em jogos, filas, conversas)?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Dificuldade frequente em esperar pode indicar impulsividade. A Ativa-Mente oferece atividades para desenvolver paciência e autocontrole.",
+                "medium": "Algumas dificuldades em esperar são comuns, mas podem ser trabalhadas.",
+                "low": "Seu filho demonstra boa capacidade de esperar sua vez."
+            }
+        },
+        {
+            "id": 10,
+            "category": "impulsividade",
+            "text": "Com que frequência seu filho interrompe conversas ou atividades dos outros?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Interrupções frequentes podem indicar impulsividade. Nossa plataforma tem exercícios específicos para desenvolver habilidades sociais.",
+                "medium": "Algumas interrupções são normais, mas podem ser reduzidas com orientação.",
+                "low": "Seu filho demonstra bom respeito pelos limites nas interações."
+            }
+        },
+        {
+            "id": 11,
+            "category": "impulsividade",
+            "text": "Seu filho toma decisões sem pensar nas consequências?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Decisões impulsivas frequentes podem indicar TDAH. A Ativa-Mente oferece jogos que trabalham o planejamento e tomada de decisão.",
+                "medium": "Algumas decisões impulsivas são normais, mas podem ser melhoradas com prática.",
+                "low": "Seu filho demonstra boa capacidade de reflexão antes de agir."
+            }
+        },
+        {
+            "id": 12,
+            "category": "impulsividade",
+            "text": "Seu filho responde às perguntas antes que elas sejam completadas?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Respostas antecipadas frequentes podem indicar impulsividade. Nossa plataforma tem atividades para desenvolver a escuta ativa.",
+                "medium": "Algumas respostas antecipadas são comuns, mas podem ser trabalhadas.",
+                "low": "Seu filho demonstra boa capacidade de escuta."
+            }
+        },
+        {
+            "id": 13,
+            "category": "impulsividade",
+            "text": "Seu filho demonstra impaciência em atividades que exigem concentração prolongada?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Impaciência frequente pode indicar desafios de autorregulação. A Ativa-Mente oferece exercícios para desenvolver persistência.",
+                "medium": "Alguma impaciência é normal, mas pode ser melhorada com prática.",
+                "low": "Seu filho demonstra boa capacidade de persistência."
+            }
+        },
+        {
+            "id": 14,
+            "category": "hiperatividade",
+            "text": "Seu filho fica inquieto em situações que exigem calma?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Inquietação frequente em momentos calmos pode indicar hiperatividade. A Ativa-Mente tem exercícios para desenvolver autorregulação.",
+                "medium": "Alguma inquietação é normal, mas pode ser trabalhada.",
+                "low": "Seu filho demonstra boa capacidade de manter a calma."
+            }
+        },
+        {
+            "id": 15,
+            "category": "hiperatividade",
+            "text": "Seu filho tem dificuldade em participar de atividades silenciosas ou tranquilas?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Dificuldade com atividades calmas pode indicar hiperatividade. Nossa plataforma oferece exercícios graduais para desenvolver tranquilidade.",
+                "medium": "Algumas dificuldades com quietude são normais, mas podem ser melhoradas.",
+                "low": "Seu filho demonstra boa capacidade em atividades tranquilas."
+            }
+        },
+        {
+            "id": 16,
+            "category": "hiperatividade",
+            "text": "Seu filho fala excessivamente em comparação com outras crianças?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Fala excessiva pode ser um sinal de hiperatividade. A Ativa-Mente tem atividades para desenvolver comunicação apropriada.",
+                "medium": "Alguma fala excessiva é normal, mas pode ser moderada com prática.",
+                "low": "Seu filho demonstra comunicação adequada para sua idade."
+            }
+        },
+        {
+            "id": 17,
+            "category": "hiperatividade",
+            "text": "Seu filho está constantemente em movimento, mesmo quando não é apropriado?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Movimento constante pode indicar hiperatividade. Nossa plataforma oferece atividades para canalizar essa energia positivamente.",
+                "medium": "Alguma movimentação extra é normal, mas pode ser regulada.",
+                "low": "Seu filho demonstra níveis adequados de atividade física."
+            }
+        },
+        {
+            "id": 18,
+            "category": "hiperatividade",
+            "text": "Seu filho tem dificuldade em permanecer sentado quando necessário?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Dificuldade em permanecer sentado pode indicar hiperatividade. A Ativa-Mente tem exercícios para desenvolver autocontrole motor.",
+                "medium": "Algumas dificuldades em ficar sentado são normais, mas podem ser melhoradas.",
+                "low": "Seu filho demonstra boa capacidade de permanecer sentado quando necessário."
+            }
+        },
+        {
+            "id": 19,
+            "category": "hiperatividade",
+            "text": "Seu filho demonstra agitação em momentos inadequados?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Agitação frequente em momentos inadequados pode indicar hiperatividade. Nossa plataforma oferece técnicas de autorregulação.",
+                "medium": "Alguma agitação ocasional é normal, mas pode ser trabalhada.",
+                "low": "Seu filho demonstra boa capacidade de regular seu comportamento."
+            }
+        },
+        {
+            "id": 20,
+            "category": "hiperatividade",
+            "text": "Seu filho parece ter energia em excesso na maior parte do tempo?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Energia excessiva constante pode indicar hiperatividade. A Ativa-Mente oferece atividades para canalizar essa energia de forma produtiva.",
+                "medium": "Níveis elevados de energia são comuns, mas podem ser equilibrados.",
+                "low": "Seu filho demonstra níveis adequados de energia."
+            }
         }
     ]
 }
