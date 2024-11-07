@@ -22,14 +22,30 @@ if 'step' not in st.session_state:
     st.session_state.step = 0
 if 'responses' not in st.session_state:
     st.session_state.responses = {}
+if 'current_response' not in st.session_state:
+    st.session_state.current_response = None
 
 def next_step():
+    # Validate current response before proceeding
+    if 1 <= st.session_state.step <= len(questions):
+        current_question = questions[st.session_state.step - 1]
+        if current_question['id'] not in st.session_state.responses:
+            st.error("Por favor, responda a pergunta antes de continuar.")
+            return
     st.session_state.step += 1
+    # Reset current response when moving to next question
+    st.session_state.current_response = None
 
 def prev_step():
     st.session_state.step -= 1
+    # Reset current response when moving to previous question
+    st.session_state.current_response = None
 
-# Progress bar
+def handle_response(question_id: int, response: str):
+    st.session_state.responses[question_id] = response
+    st.session_state.current_response = response
+
+# Progress bar with smoother transition
 progress = st.session_state.step / (len(questions) + 3)  # +3 for intro, results, and CTA
 st.progress(progress)
 
@@ -38,30 +54,50 @@ if st.session_state.step == 0:
     # Introduction
     st.title(content['intro']['title'])
     st.write(content['intro']['description'])
-    st.button("Começar Avaliação", on_click=next_step)
+    
+    # Add container for better button placement
+    with st.container():
+        st.button("Começar Avaliação", on_click=next_step, use_container_width=True)
 
 elif 1 <= st.session_state.step <= len(questions):
     # Questions
     question = questions[st.session_state.step - 1]
-    st.subheader(f"Pergunta {st.session_state.step} de {len(questions)}")
     
-    response = st.radio(
-        question['text'],
-        options=question['options'],
-        key=f"q_{question['id']}"
-    )
+    # Question container for better spacing
+    with st.container():
+        st.subheader(f"Pergunta {st.session_state.step} de {len(questions)}")
+        
+        # Get previous response if it exists
+        default_index = (
+            question['options'].index(st.session_state.responses[question['id']])
+            if question['id'] in st.session_state.responses
+            else 0
+        )
+        
+        response = st.radio(
+            question['text'],
+            options=question['options'],
+            key=f"q_{question['id']}",
+            index=default_index
+        )
+        
+        # Store response immediately when selected
+        if response != st.session_state.current_response:
+            handle_response(question['id'], response)
+        
+        # Show feedback if question was answered
+        if question['id'] in st.session_state.responses:
+            feedback = get_feedback(question, st.session_state.responses[question['id']])
+            st.markdown(f'<div class="feedback-box">{feedback}</div>', unsafe_allow_html=True)
     
-    if st.button("Próximo"):
-        st.session_state.responses[question['id']] = response
-        next_step()
-    
-    if st.button("Voltar"):
-        prev_step()
-    
-    # Show feedback if question was already answered
-    if question['id'] in st.session_state.responses:
-        feedback = get_feedback(question, st.session_state.responses[question['id']])
-        st.markdown(f'<div class="feedback-box">{feedback}</div>', unsafe_allow_html=True)
+    # Navigation container for better button layout
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("← Voltar", use_container_width=True):
+            prev_step()
+    with col2:
+        if st.button("Próximo →", use_container_width=True):
+            next_step()
 
 elif st.session_state.step == len(questions) + 1:
     # Results page
@@ -91,8 +127,15 @@ elif st.session_state.step == len(questions) + 1:
             </div>
             """, unsafe_allow_html=True)
     
-    st.button("Ver Depoimentos", on_click=next_step)
-    
+    # Navigation buttons
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("← Voltar para o Questionário", use_container_width=True):
+            prev_step()
+    with col2:
+        if st.button("Ver Depoimentos →", use_container_width=True):
+            next_step()
+
 elif st.session_state.step == len(questions) + 2:
     # Testimonials
     st.title("Depoimentos de Pais")
@@ -108,11 +151,15 @@ elif st.session_state.step == len(questions) + 2:
     
     # Call to Action
     st.subheader("Comece sua jornada com a Ativa-Mente")
-    if st.button("Experimente Gratuitamente"):
-        st.success("Obrigado por seu interesse! Em breve você receberá um e-mail com as instruções de acesso.")
     
-    if st.button("Voltar para os Resultados"):
-        prev_step()
+    # Navigation and CTA buttons
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("← Voltar para os Resultados", use_container_width=True):
+            prev_step()
+    with col2:
+        if st.button("Experimente Gratuitamente →", use_container_width=True):
+            st.success("Obrigado por seu interesse! Em breve você receberá um e-mail com as instruções de acesso.")
 
 # Footer
 st.markdown("---")
