@@ -36,7 +36,7 @@ def update_step(new_step):
     """Update step with proper state management."""
     st.session_state.step = new_step
     st.session_state.current_response = None
-    st.experimental_rerun()
+    st.rerun()
 
 def next_step():
     """Handle navigation to next step with validation."""
@@ -56,7 +56,7 @@ def handle_response(question_id: int, response: str):
                     st.session_state.responses[question_id] != response):
         st.session_state.responses[question_id] = response
         st.session_state.current_response = response
-        st.experimental_rerun()
+        st.rerun()
 
 # Progress bar with smoother transition
 progress = st.session_state.step / (len(questions) + 3)  # +3 for intro, results, and CTA
