@@ -1,0 +1,33 @@
+div.stButton > button {
+    width: 100%;
+    border-radius: 20px;
+    background-color: #FF4B4B;
+    color: white;
+    font-weight: bold;
+}
+
+div.stProgress > div > div > div {
+    background-color: #FF4B4B;
+}
+
+.testimonial {
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #F0F2F6;
+    margin: 10px 0;
+}
+
+.benefit-card {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 10px 0;
+}
+
+.feedback-box {
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #F0F2F6;
+    margin: 10px 0;
+}

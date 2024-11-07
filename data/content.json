@@ -1,0 +1,32 @@
+{
+    "intro": {
+        "title": "Bem-vindo à Avaliação de TDAH",
+        "description": "Você tem notado que seu filho se distrai facilmente, é impulsivo ou tem dificuldades em concluir tarefas? Este questionário ajudará você a entender melhor os comportamentos do seu filho e como a Ativa-Mente pode ajudar."
+    },
+    "testimonials": [
+        {
+            "name": "Ana Silva",
+            "text": "Depois de usar a Ativa-Mente por 3 meses, meu filho melhorou significativamente sua concentração na escola.",
+            "rating": 5
+        },
+        {
+            "name": "Carlos Santos",
+            "text": "As atividades interativas ajudaram muito no desenvolvimento do autocontrole do meu filho.",
+            "rating": 5
+        }
+    ],
+    "platform_benefits": [
+        {
+            "title": "Jogos Interativos",
+            "description": "Atividades divertidas que desenvolvem foco e concentração"
+        },
+        {
+            "title": "Acompanhamento Personalizado",
+            "description": "Relatórios detalhados sobre o progresso do seu filho"
+        },
+        {
+            "title": "Método Científico",
+            "description": "Baseado em pesquisas e desenvolvido por especialistas"
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+{
+    "questions": [
+        {
+            "id": 1,
+            "category": "concentracao",
+            "text": "Seu filho tem dificuldade em se concentrar nas tarefas escolares?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "A dificuldade frequente de concentração pode ser um indicador de TDAH. A Ativa-Mente oferece exercícios específicos para melhorar o foco.",
+                "medium": "Algumas dificuldades de concentração são normais, mas vale a pena acompanhar de perto.",
+                "low": "Seu filho parece ter boa capacidade de concentração neste aspecto."
+            }
+        },
+        {
+            "id": 2,
+            "category": "impulsividade",
+            "text": "Seu filho costuma agir de forma impulsiva, interrompendo conversas ou tomando decisões rápidas?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Comportamentos impulsivos frequentes podem indicar TDAH. Nossa plataforma tem atividades que ajudam no autocontrole.",
+                "medium": "Alguma impulsividade é comum em crianças, mas pode ser benéfico trabalhar nisso.",
+                "low": "Seu filho demonstra bom controle sobre comportamentos impulsivos."
+            }
+        },
+        {
+            "id": 3,
+            "category": "hiperatividade",
+            "text": "Você percebe uma inquietação constante, como se ele nunca conseguisse ficar parado?",
+            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "feedback": {
+                "high": "Inquietação constante pode ser um sinal de hiperatividade. A Ativa-Mente oferece atividades que canalizam essa energia.",
+                "medium": "Algumas crianças são naturalmente mais ativas, mas existem formas de ajudá-las a se regular.",
+                "low": "Seu filho parece ter níveis adequados de atividade física."
+            }
+        }
+    ]
+}
