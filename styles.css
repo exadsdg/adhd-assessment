@@ -1,6 +1,16 @@
+/* Center content and add spacing */
+.stApp {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Clean, modern button style */
 div.stButton > button {
-    width: 100%;
-    border-radius: 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 0.5rem 1rem;
+    margin: 1rem 0;
     background-color: #1B365D;
     color: white;
     font-weight: bold;
@@ -11,39 +21,69 @@ div.stButton > button:hover {
     background-color: #FFA500;
 }
 
+/* Centered headers */
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
 div.stProgress > div > div > div {
     background-color: #4CAF50;
 }
 
 .testimonial {
-    padding: 20px;
-    border-radius: 10px;
+    padding: 1.5rem;
+    border-radius: 8px;
     background-color: #FFFFFF;
-    margin: 10px 0;
+    margin: 1rem 0;
     border: 2px solid #1B365D;
+    text-align: center;
 }
 
 .benefit-card {
     background-color: #FFFFFF;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 1.5rem;
+    border-radius: 8px;
     box-shadow: 0 2px 4px rgba(27,54,93,0.1);
-    margin: 10px 0;
+    margin: 1rem 0;
     border-left: 4px solid #FFA500;
+    text-align: center;
 }
 
 .feedback-box {
-    padding: 15px;
-    border-radius: 5px;
+    padding: 1.5rem;
+    border-radius: 8px;
     background-color: #FFFFFF;
-    margin: 10px 0;
+    margin: 1rem 0;
     border-left: 4px solid #4CAF50;
+    text-align: center;
 }
 
 .chart-container {
     background-color: #FFFFFF;
-    padding: 20px;
-    border-radius: 10px;
-    margin: 20px 0;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
     box-shadow: 0 2px 4px rgba(27,54,93,0.1);
+}
+
+/* Radio button styling */
+div.stRadio > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+div.stRadio label {
+    padding: 0.75rem 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    width: 100%;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+div.stRadio label:hover {
+    background-color: #e9ecef;
 }

@@ -12,8 +12,10 @@ st.set_page_config(
 )
 
 # Display logo
-st.image("DALL·E 2024-11-05 14.57.07 - Design a logo for a children's platform called 'Ativa-Mente', focused on enhancing focus and attention in young people with ADHD. The logo should be b.webp", 
-        use_container_width=True)
+st.image(
+    "DALL·E 2024-11-05 14.57.07 - Design a logo for a children's platform called 'Ativa-Mente', focused on enhancing focus and attention in young people with ADHD. The logo should be b.webp",
+    width=200  # Make logo smaller
+)
 st.markdown("<br>", unsafe_allow_html=True)  # Add some spacing
 
 # Cache data loading
@@ -54,7 +56,7 @@ def update_step(new_step):
         if new_step != st.session_state.step:
             st.session_state.step = new_step
             st.session_state.current_response = None
-            st.experimental_rerun()
+            st.rerun()  # Updated from experimental_rerun
 
 def next_step():
     """Handle navigation to next step with validation."""
@@ -97,7 +99,8 @@ def create_radar_chart(scores):
         showlegend=False,
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
-        height=400
+        height=400,
+        margin=dict(t=30, b=30)  # Add margin for better spacing
     )
     return fig
 
@@ -115,7 +118,8 @@ def create_bar_chart(scores):
     fig.update_layout(
         paper_bgcolor='rgba(0,0,0,0)',
         plot_bgcolor='rgba(0,0,0,0)',
-        height=300
+        height=300,
+        margin=dict(t=30, b=30)  # Add margin for better spacing
     )
     return fig
 
@@ -132,26 +136,32 @@ navigation_container = st.empty()
 # Progress bar
 st.progress(progress)
 
+# Add spacing
+st.markdown("<div style='margin: 2rem 0;'></div>", unsafe_allow_html=True)
+
 # Main content
 if st.session_state.step == 0:
     with header_container:
-        st.title(content['intro']['title'])
-        st.write(content['intro']['description'])
+        st.markdown(f"<h1 style='text-align: center;'>{content['intro']['title']}</h1>", unsafe_allow_html=True)
+        st.markdown(f"<p style='text-align: center; margin: 2rem 0;'>{content['intro']['description']}</p>", unsafe_allow_html=True)
     
     with content_container:
+        st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
         if st.button("Começar Avaliação", use_container_width=True):
             next_step()
+        st.markdown("</div>", unsafe_allow_html=True)
 
 elif 1 <= st.session_state.step <= len(questions):
     question = questions[st.session_state.step - 1]
     
     with header_container:
-        st.subheader(f"Pergunta {st.session_state.step} de {len(questions)}")
+        st.markdown(f"<h2 style='text-align: center;'>Pergunta {st.session_state.step} de {len(questions)}</h2>", unsafe_allow_html=True)
     
     with content_container:
+        st.markdown(f"<p style='text-align: center; margin: 2rem 0;'>{question['text']}</p>", unsafe_allow_html=True)
         current_value = st.session_state.responses.get(question['id'], None)
         response = st.radio(
-            question['text'],
+            "",  # Remove label since we're showing the question above
             options=question['options'],
             key=f"q_{question['id']}",
             index=None if current_value is None else question['options'].index(current_value)
@@ -164,6 +174,8 @@ elif 1 <= st.session_state.step <= len(questions):
         if question['id'] in st.session_state.responses:
             feedback = get_feedback(question, st.session_state.responses[question['id']])
             st.markdown(f'<div class="feedback-box">{feedback}</div>', unsafe_allow_html=True)
+    
+    st.markdown("<div style='margin: 2rem 0;'></div>", unsafe_allow_html=True)
     
     with navigation_container:
         col1, col2 = st.columns(2)
@@ -184,10 +196,10 @@ elif st.session_state.step == len(questions) + 1:
     scores = get_cached_scores(str(st.session_state.responses))
     
     with header_container:
-        st.title("Resultados da Avaliação")
+        st.markdown("<h1 style='text-align: center;'>Resultados da Avaliação</h1>", unsafe_allow_html=True)
     
     with content_container:
-        st.subheader("Análise por Área")
+        st.markdown("<h2 style='text-align: center; margin: 2rem 0;'>Análise por Área</h2>", unsafe_allow_html=True)
         
         # Radar Chart
         st.markdown('<div class="chart-container">', unsafe_allow_html=True)
@@ -202,23 +214,23 @@ elif st.session_state.step == len(questions) + 1:
         st.markdown('</div>', unsafe_allow_html=True)
         
         # Detailed Analysis
-        st.subheader("Análise Detalhada")
+        st.markdown("<h2 style='text-align: center; margin: 2rem 0;'>Análise Detalhada</h2>", unsafe_allow_html=True)
         for category, score in scores.items():
             severity = "Alta" if score >= 70 else "Moderada" if score >= 40 else "Baixa"
             color = "#FF6B6B" if score >= 70 else "#FFA500" if score >= 40 else "#4CAF50"
             
             st.markdown(f"""
-            <div style="padding: 15px; border-radius: 5px; background-color: #FFFFFF; margin: 10px 0; border-left: 4px solid {color}">
-                <h4>{category.title()}</h4>
-                <p>Intensidade: {severity} ({score:.1f}%)</p>
-                <p>{get_category_description(category, severity)}</p>
+            <div style="padding: 1.5rem; border-radius: 8px; background-color: #FFFFFF; margin: 1rem 0; border-left: 4px solid {color}">
+                <h4 style="margin: 0 0 1rem 0;">{category.title()}</h4>
+                <p style="margin: 0.5rem 0;">Intensidade: {severity} ({score:.1f}%)</p>
+                <p style="margin: 0.5rem 0;">{get_category_description(category, severity)}</p>
             </div>
             """, unsafe_allow_html=True)
         
         recommendation = get_recommendation(scores)
         st.info(recommendation)
         
-        st.subheader("Como a Ativa-Mente pode ajudar:")
+        st.markdown("<h2 style='text-align: center; margin: 2rem 0;'>Como a Ativa-Mente pode ajudar:</h2>", unsafe_allow_html=True)
         cols = st.columns(len(content['platform_benefits']))
         for col, benefit in zip(cols, content['platform_benefits']):
             with col:
@@ -228,6 +240,8 @@ elif st.session_state.step == len(questions) + 1:
                     <p>{benefit['description']}</p>
                 </div>
                 """, unsafe_allow_html=True)
+
+    st.markdown("<div style='margin: 2rem 0;'></div>", unsafe_allow_html=True)
 
     with navigation_container:
         col1, col2 = st.columns(2)
@@ -240,20 +254,22 @@ elif st.session_state.step == len(questions) + 1:
 
 elif st.session_state.step == len(questions) + 2:
     with header_container:
-        st.title("Depoimentos de Pais")
+        st.markdown("<h1 style='text-align: center;'>Depoimentos de Pais</h1>", unsafe_allow_html=True)
     
     with content_container:
         for testimonial in content['testimonials']:
             st.markdown(f"""
             <div class="testimonial">
-                <p>"{testimonial['text']}"</p>
-                <p><strong>{testimonial['name']}</strong></p>
-                {'⭐' * testimonial['rating']}
+                <p style="margin: 1rem 0;">"{testimonial['text']}"</p>
+                <p style="margin: 0.5rem 0;"><strong>{testimonial['name']}</strong></p>
+                <p style="margin: 0;">{'⭐' * testimonial['rating']}</p>
             </div>
             """, unsafe_allow_html=True)
         
-        st.subheader("Comece sua jornada com a Ativa-Mente")
+        st.markdown("<h2 style='text-align: center; margin: 2rem 0;'>Comece sua jornada com a Ativa-Mente</h2>", unsafe_allow_html=True)
     
+    st.markdown("<div style='margin: 2rem 0;'></div>", unsafe_allow_html=True)
+
     with navigation_container:
         col1, col2 = st.columns(2)
         with col1:
@@ -264,5 +280,6 @@ elif st.session_state.step == len(questions) + 2:
                 st.success("Obrigado por seu interesse! Em breve você receberá um e-mail com as instruções de acesso.")
 
 # Footer
-st.markdown("---")
-st.markdown("Desenvolvido com ❤️ pela Ativa-Mente | Este questionário não substitui uma avaliação profissional")
+st.markdown("<div style='margin: 3rem 0;'></div>", unsafe_allow_html=True)
+st.markdown("<hr>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; margin: 2rem 0;'>Desenvolvido com ❤️ pela Ativa-Mente | Este questionário não substitui uma avaliação profissional</p>", unsafe_allow_html=True)
