@@ -11,14 +11,6 @@ st.set_page_config(
     layout="centered"
 )
 
-# Display logo
-st.markdown('''
-    <div style="text-align: center; padding: 2rem 0;">
-        <img src="DALL·E 2024-11-05 14.57.07 - Design a logo for a children's platform called 'Ativa-Mente', focused on enhancing focus and attention in young people with ADHD. The logo should be b.webp" 
-             style="width: 100px; height: auto; margin-bottom: 2rem;">
-    </div>
-''', unsafe_allow_html=True)
-
 # Cache data loading
 @st.cache_data
 def get_cached_data():
@@ -145,10 +137,10 @@ if st.session_state.step == 0:
         st.markdown(f"<p style='text-align: center; margin: 1rem 0;'>{content['intro']['description']}</p>", unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
-        st.markdown("<div style='text-align: center;'>", unsafe_allow_html=True)
-        if st.button("Começar Avaliação", use_container_width=True):
-            next_step()
-        st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown('<div class="navigation-container">', unsafe_allow_html=True)
+    if st.button("Começar Avaliação", use_container_width=True):
+        next_step()
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif 1 <= st.session_state.step <= len(questions):
     question = questions[st.session_state.step - 1]
@@ -160,10 +152,11 @@ elif 1 <= st.session_state.step <= len(questions):
         
         current_value = st.session_state.responses.get(question['id'], None)
         response = st.radio(
-            "",  # Remove label since we're showing the question above
+            "Selecione uma opção",
             options=question['options'],
             key=f"q_{question['id']}",
-            index=None if current_value is None else question['options'].index(current_value)
+            index=None if current_value is None else question['options'].index(current_value),
+            label_visibility="collapsed"
         )
         
         if response is not None:
@@ -174,15 +167,16 @@ elif 1 <= st.session_state.step <= len(questions):
             st.markdown(f'<div class="feedback-box">{feedback}</div>', unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
-    with navigation_container:
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("← Voltar", use_container_width=True, disabled=st.session_state.step == 1):
-                prev_step()
-        with col2:
-            next_button_label = "Próximo →" if st.session_state.step < len(questions) else "Ver Resultados →"
-            if st.button(next_button_label, use_container_width=True, disabled=not validate_current_step()):
-                next_step()
+    st.markdown('<div class="navigation-container">', unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("← Voltar", use_container_width=True, disabled=st.session_state.step == 1):
+            prev_step()
+    with col2:
+        next_button_label = "Próximo →" if st.session_state.step < len(questions) else "Ver Resultados →"
+        if st.button(next_button_label, use_container_width=True, disabled=not validate_current_step()):
+            next_step()
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif st.session_state.step == len(questions) + 1:
     # Cache scores calculation
@@ -234,14 +228,15 @@ elif st.session_state.step == len(questions) + 1:
                 """, unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
-    with navigation_container:
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("← Voltar ao Questionário", use_container_width=True):
-                prev_step()
-        with col2:
-            if st.button("Ver Depoimentos →", use_container_width=True):
-                next_step()
+    st.markdown('<div class="navigation-container">', unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("← Voltar ao Questionário", use_container_width=True):
+            prev_step()
+    with col2:
+        if st.button("Ver Depoimentos →", use_container_width=True):
+            next_step()
+    st.markdown('</div>', unsafe_allow_html=True)
 
 elif st.session_state.step == len(questions) + 2:
     with st.container():
@@ -260,15 +255,15 @@ elif st.session_state.step == len(questions) + 2:
         st.markdown("<h2 style='text-align: center; font-size: 20px; margin: 2rem 0;'>Comece sua jornada com a Ativa-Mente</h2>", unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
-    with navigation_container:
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("← Voltar para os Resultados", use_container_width=True):
-                prev_step()
-        with col2:
-            if st.button("Experimente Gratuitamente →", use_container_width=True):
-                st.success("Obrigado por seu interesse! Em breve você receberá um e-mail com as instruções de acesso.")
+    st.markdown('<div class="navigation-container">', unsafe_allow_html=True)
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("← Voltar para os Resultados", use_container_width=True):
+            prev_step()
+    with col2:
+        if st.button("Experimente Gratuitamente →", use_container_width=True):
+            st.success("Obrigado por seu interesse! Em breve você receberá um e-mail com as instruções de acesso.")
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # Footer
-st.markdown("<hr>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; margin: 1rem 0;'>Desenvolvido com ❤️ pela Ativa-Mente | Este questionário não substitui uma avaliação profissional</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; padding: 2rem 0;'>Desenvolvido com ❤️ pela Ativa-Mente</p>", unsafe_allow_html=True)
