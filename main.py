@@ -46,19 +46,19 @@ def update_step(new_step):
     if new_step != st.session_state.step:
         st.session_state.step = new_step
         st.session_state.current_response = None
-        st.rerun()
+        st.rerun()  # Single rerun here
 
 def next_step():
     """Handle navigation to next step with validation."""
-    if not validate_current_step():
-        st.error("Por favor, selecione uma resposta antes de continuar.")
-        return
-    st.session_state.step += 1
+    if validate_current_step():
+        st.session_state.step += 1
+        st.rerun()  # Single rerun here
 
 def prev_step():
     """Handle navigation to previous step."""
     if st.session_state.step > 0:
         st.session_state.step -= 1
+        st.rerun()  # Single rerun for consistency
 
 def handle_response(question_id: int, response: str):
     """Handle storing of responses without forcing rerun."""
@@ -88,8 +88,7 @@ if st.session_state.step == 0:
     
     with content_container:
         if st.button("Começar Avaliação", use_container_width=True):
-            st.session_state.step = 1
-            st.rerun()
+            update_step(1)
 
 elif 1 <= st.session_state.step <= len(questions):
     question = questions[st.session_state.step - 1]
