@@ -51,6 +51,13 @@ def calculate_score(responses: Dict[int, str]) -> Dict[str, float]:
 
 def get_feedback(question: Dict, response: str) -> str:
     """Get appropriate feedback based on response."""
+    standard_weights = {
+        'Raramente': 'low',
+        'Às vezes': 'medium',
+        'Frequentemente': 'high',
+        'Sempre': 'high'
+    }
+    
     # Custom mapping for specific questions
     custom_weights = {
         6: {  # Question ID for distractions
@@ -73,17 +80,14 @@ def get_feedback(question: Dict, response: str) -> str:
         }
     }
     
+    # First check if this question has custom weights
     if question['id'] in custom_weights:
-        return question['feedback'][custom_weights[question['id']][response]]
+        weight_map = custom_weights[question['id']]
+        severity = weight_map.get(response, standard_weights.get(response, 'medium'))
+    else:
+        severity = standard_weights.get(response, 'medium')
     
-    # Standard mapping for other questions
-    standard_weights = {
-        'Raramente': 'low',
-        'Às vezes': 'medium',
-        'Frequentemente': 'high',
-        'Sempre': 'high'
-    }
-    return question['feedback'][standard_weights[response]]
+    return question['feedback'][severity]
 
 def get_recommendation(scores: Dict[str, float]) -> str:
     """Generate detailed clinical recommendation based on scores."""

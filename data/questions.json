@@ -59,7 +59,7 @@
             "id": 6,
             "category": "concentracao",
             "text": "Seu filho se distrai facilmente com estímulos externos (sons, movimentos)?",
-            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "options": ["Ignora completamente", "Perde o foco por alguns minutos", "Abandona a atividade", "Não consegue retomar o foco"],
             "feedback": {
                 "high": "Alta sensibilidade a distrações pode indicar desafios de atenção. A Ativa-Mente tem exercícios específicos para melhorar o foco em ambientes com estímulos.",
                 "medium": "Algumas distrações são normais, mas podem ser trabalhadas para melhor foco.",
@@ -114,7 +114,7 @@
             "id": 11,
             "category": "impulsividade",
             "text": "Seu filho toma decisões sem pensar nas consequências?",
-            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "options": ["Pensa antes de agir", "Age e depois percebe consequências", "Age por impulso frequentemente", "Não considera consequências"],
             "feedback": {
                 "high": "Decisões impulsivas frequentes podem indicar TDAH. A Ativa-Mente oferece jogos que trabalham o planejamento e tomada de decisão.",
                 "medium": "Algumas decisões impulsivas são normais, mas podem ser melhoradas com prática.",
@@ -169,7 +169,7 @@
             "id": 16,
             "category": "hiperatividade",
             "text": "Seu filho fala excessivamente em comparação com outras crianças?",
-            "options": ["Raramente", "Às vezes", "Frequentemente", "Sempre"],
+            "options": ["Comunica-se adequadamente", "Fala mais que o comum", "Domina conversas constantemente", "Fala sem parar e fora de contexto"],
             "feedback": {
                 "high": "Fala excessiva pode ser um sinal de hiperatividade. A Ativa-Mente tem atividades para desenvolver comunicação apropriada.",
                 "medium": "Alguma fala excessiva é normal, mas pode ser moderada com prática.",
