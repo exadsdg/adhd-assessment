@@ -52,3 +52,24 @@ def get_recommendation(scores: Dict[str, float]) -> str:
         return "Alguns comportamentos indicam que seu filho poderia se beneficiar do suporte adicional oferecido pela Ativa-Mente. Considere uma avaliação profissional."
     else:
         return "Seu filho parece apresentar comportamentos típicos para a idade. A Ativa-Mente ainda pode ajudar no desenvolvimento de habilidades importantes."
+
+def get_category_description(category: str, severity: str) -> str:
+    """Get detailed description for each category based on severity."""
+    descriptions = {
+        'concentracao': {
+            'Alta': "Apresenta dificuldade significativa em manter o foco em tarefas e atividades. Recomenda-se acompanhamento profissional.",
+            'Moderada': "Demonstra alguns desafios com concentração que podem impactar o desempenho escolar.",
+            'Baixa': "Mantém níveis adequados de concentração na maioria das atividades."
+        },
+        'impulsividade': {
+            'Alta': "Apresenta comportamentos impulsivos frequentes que podem afetar interações sociais e aprendizado.",
+            'Moderada': "Demonstra alguns comportamentos impulsivos que podem ser trabalhados.",
+            'Baixa': "Demonstra bom controle sobre comportamentos impulsivos."
+        },
+        'hiperatividade': {
+            'Alta': "Apresenta níveis elevados de inquietação que podem impactar atividades diárias.",
+            'Moderada': "Demonstra alguma inquietação que pode ser canalizada positivamente.",
+            'Baixa': "Apresenta níveis adequados de atividade física."
+        }
+    }
+    return descriptions[category][severity]

@@ -1,5 +1,7 @@
 import streamlit as st
 import pandas as pd
+import plotly.graph_objects as go
+import plotly.express as px
 from utils import load_json_data, calculate_score, get_feedback, get_recommendation
 
 # Page configuration
@@ -66,6 +68,52 @@ def handle_response(question_id: int, response: str):
                     st.session_state.responses[question_id] != response):
         st.session_state.responses[question_id] = response
         st.session_state.current_response = response
+
+def create_radar_chart(scores):
+    categories = list(scores.keys())
+    values = list(scores.values())
+    
+    fig = go.Figure()
+    fig.add_trace(go.Scatterpolar(
+        r=values,
+        theta=categories,
+        fill='toself',
+        name='TDAH Indicators',
+        line_color='#1B365D',
+        fillcolor='rgba(27,54,93,0.3)'
+    ))
+
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[0, 100]
+            )
+        ),
+        showlegend=False,
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        height=400
+    )
+    return fig
+
+def create_bar_chart(scores):
+    df = pd.DataFrame({
+        'Categoria': list(scores.keys()),
+        'Pontuação': list(scores.values())
+    })
+    
+    fig = px.bar(df, x='Categoria', y='Pontuação',
+                 color='Pontuação',
+                 color_continuous_scale=['#4CAF50', '#FFA500', '#FF6B6B'],
+                 range_y=[0, 100])
+    
+    fig.update_layout(
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        height=300
+    )
+    return fig
 
 # Pre-calculate progress
 total_steps = len(questions) + 3  # +3 for intro, results, and CTA
@@ -135,9 +183,32 @@ elif st.session_state.step == len(questions) + 1:
     
     with content_container:
         st.subheader("Análise por Área")
+        
+        # Radar Chart
+        st.markdown('<div class="chart-container">', unsafe_allow_html=True)
+        radar_fig = create_radar_chart(scores)
+        st.plotly_chart(radar_fig, use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Bar Chart
+        st.markdown('<div class="chart-container">', unsafe_allow_html=True)
+        bar_fig = create_bar_chart(scores)
+        st.plotly_chart(bar_fig, use_container_width=True)
+        st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Detailed Analysis
+        st.subheader("Análise Detalhada")
         for category, score in scores.items():
-            st.write(f"{category.title()}: {score:.1f}%")
-            st.progress(score/100)
+            severity = "Alta" if score >= 70 else "Moderada" if score >= 40 else "Baixa"
+            color = "#FF6B6B" if score >= 70 else "#FFA500" if score >= 40 else "#4CAF50"
+            
+            st.markdown(f"""
+            <div style="padding: 15px; border-radius: 5px; background-color: #FFFFFF; margin: 10px 0; border-left: 4px solid {color}">
+                <h4>{category.title()}</h4>
+                <p>Intensidade: {severity} ({score:.1f}%)</p>
+                <p>{get_category_description(category, severity)}</p>
+            </div>
+            """, unsafe_allow_html=True)
         
         recommendation = get_recommendation(scores)
         st.info(recommendation)
@@ -152,15 +223,6 @@ elif st.session_state.step == len(questions) + 1:
                     <p>{benefit['description']}</p>
                 </div>
                 """, unsafe_allow_html=True)
-    
-    with navigation_container:
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("← Voltar para o Questionário", use_container_width=True):
-                prev_step()
-        with col2:
-            if st.button("Ver Depoimentos →", use_container_width=True):
-                next_step()
 
 elif st.session_state.step == len(questions) + 2:
     with header_container:

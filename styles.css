@@ -1,33 +1,49 @@
 div.stButton > button {
     width: 100%;
     border-radius: 20px;
-    background-color: #FF4B4B;
+    background-color: #1B365D;
     color: white;
     font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+div.stButton > button:hover {
+    background-color: #FFA500;
 }
 
 div.stProgress > div > div > div {
-    background-color: #FF4B4B;
+    background-color: #4CAF50;
 }
 
 .testimonial {
     padding: 20px;
     border-radius: 10px;
-    background-color: #F0F2F6;
+    background-color: #FFFFFF;
     margin: 10px 0;
+    border: 2px solid #1B365D;
 }
 
 .benefit-card {
     background-color: #FFFFFF;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(27,54,93,0.1);
     margin: 10px 0;
+    border-left: 4px solid #FFA500;
 }
 
 .feedback-box {
     padding: 15px;
     border-radius: 5px;
-    background-color: #F0F2F6;
+    background-color: #FFFFFF;
     margin: 10px 0;
+    border-left: 4px solid #4CAF50;
+}
+
+.chart-container {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(27,54,93,0.1);
 }
