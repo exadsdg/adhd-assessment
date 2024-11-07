@@ -321,6 +321,32 @@ elif st.session_state.step == len(questions) + 1:
             </div>
             """, unsafe_allow_html=True)
         
+        # Platform Promotion
+        st.markdown('''
+            <div style="background-color: #1B365D; color: white; padding: 2rem; border-radius: 8px; text-align: center; margin: 2rem 0;">
+                <h2 style="color: white;">Conheça a Ativa-Mente</h2>
+                <p style="font-size: 1.1em; margin: 1rem 0;">
+                    Plataforma completa de treinamento cognitivo com:
+                    <br>• 6+ Jogos Interativos (Memória, Padrões, Foco e mais)
+                    <br>• Sistema de Progresso com Níveis
+                    <br>• Dicas Diárias Personalizadas
+                    <br>• Acompanhamento de Evolução
+                    <br>• Histórias de Sucesso Inspiradoras
+                </p>
+                <div style="background-color: #FFA500; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem;">
+                    <h3 style="color: #1B365D; margin: 0; font-size: 1.5em;">Oferta Especial</h3>
+                    <p style="margin: 0.5rem 0; font-size: 1.2em;">
+                        <strong>R$ 37,00</strong> - Acesso Vitalício
+                        <br>
+                        <span style="font-size: 0.9em;">Inclui todos os jogos e atualizações futuras</span>
+                    </p>
+                    <button style="background-color: #1B365D; color: white; border: none; padding: 0.75rem 2rem; border-radius: 25px; margin-top: 1rem; font-weight: bold; cursor: pointer;">
+                        Começar Agora
+                    </button>
+                </div>
+            </div>
+        ''', unsafe_allow_html=True)
+        
         # Clinical Recommendation
         recommendation = get_recommendation(scores)
         st.markdown("""
@@ -329,40 +355,6 @@ elif st.session_state.step == len(questions) + 1:
             <p style="margin: 0;">{}</p>
         </div>
         """.format(recommendation), unsafe_allow_html=True)
-        
-        # Platform Promotion
-        st.markdown('''
-            <div style="background-color: #1B365D; color: white; padding: 2rem; border-radius: 8px; text-align: center; margin: 2rem 0;">
-                <h2 style="color: white;">Conheça a Ativa-Mente</h2>
-                <p style="font-size: 1.1em; margin: 1rem 0;">
-                    Plataforma especializada para crianças com TDAH, focada em:
-                    <br>• Desenvolvimento da memória
-                    <br>• Melhoria do foco e atenção
-                    <br>• Exercícios cognitivos personalizados
-                </p>
-                <div style="background-color: #FFA500; padding: 1rem; border-radius: 4px; margin-top: 1rem;">
-                    <h3 style="color: #1B365D; margin: 0;">Comece Agora</h3>
-                    <p style="margin: 0.5rem 0;">7 dias grátis de acesso completo</p>
-                </div>
-            </div>
-        ''', unsafe_allow_html=True)
-        
-        # Intervention Strategies
-        st.markdown("<h2 style='text-align: center; font-size: 20px;'>Soluções Personalizadas</h2>", unsafe_allow_html=True)
-        cols = st.columns(len(content['platform_benefits']))
-        for col, benefit in zip(cols, content['platform_benefits']):
-            with col:
-                st.markdown(f"""
-                <div class="benefit-card">
-                    <h3>{benefit['title']}</h3>
-                    <p>{benefit['description']}</p>
-                    <div style="margin-top: 1rem;">
-                        <span style="background-color: #FFA500; color: #1B365D; padding: 0.5rem 1rem; border-radius: 20px; font-weight: bold;">
-                            Saiba mais
-                        </span>
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
         
         st.markdown('</div>', unsafe_allow_html=True)
     

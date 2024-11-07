@@ -5,28 +5,39 @@
     },
     "testimonials": [
         {
-            "name": "Ana Silva",
-            "text": "Depois de usar a Ativa-Mente por 3 meses, meu filho melhorou significativamente sua concentração na escola.",
+            "name": "Maria Clara, 9 anos",
+            "text": "Melhorei muito nas aulas depois que comecei a jogar!",
             "rating": 5
         },
         {
-            "name": "Carlos Santos",
-            "text": "As atividades interativas ajudaram muito no desenvolvimento do autocontrole do meu filho.",
+            "name": "Pedro Lucas, 8 anos",
+            "text": "Os jogos são muito divertidos e me ajudam a prestar mais atenção",
+            "rating": 5
+        },
+        {
+            "name": "Ana Júlia, 10 anos",
+            "text": "Agora consigo me concentrar melhor nos deveres de casa",
             "rating": 5
         }
     ],
     "platform_benefits": [
         {
             "title": "Jogos Interativos",
-            "description": "Atividades divertidas que desenvolvem foco e concentração"
+            "description": "6+ jogos divertidos incluindo Memória, Padrões, Caça aos Alvos e muito mais!"
         },
         {
-            "title": "Acompanhamento Personalizado",
-            "description": "Relatórios detalhados sobre o progresso do seu filho"
+            "title": "Sistema de Progresso",
+            "description": "Acompanhe o desenvolvimento com níveis, pontuações e relatórios detalhados"
         },
         {
-            "title": "Método Científico",
-            "description": "Baseado em pesquisas e desenvolvido por especialistas"
+            "title": "Suporte Personalizado",
+            "description": "Dicas diárias, histórias de sucesso e exercícios adaptados ao perfil"
         }
+    ],
+    "daily_tips": [
+        "Faça pequenas pausas de 5 minutos a cada 25 minutos de atividade",
+        "Mantenha um ambiente calmo e sem distrações durante os jogos",
+        "Estabeleça uma rotina diária para os exercícios de concentração",
+        "Celebre suas pequenas conquistas e progressos!"
     ]
 }
