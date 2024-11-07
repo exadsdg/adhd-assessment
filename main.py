@@ -320,7 +320,51 @@ elif st.session_state.step == len(questions) + 1:
                 </div>
             </div>
             """, unsafe_allow_html=True)
-        
+
+        # Social Proof Section
+        st.markdown("""
+            <div style="background-color: #f8f9fa; padding: 2rem; border-radius: 8px; margin: 2rem 0;">
+                <h2 style="text-align: center; color: #1B365D; margin-bottom: 1.5rem;">Reconhecido por Especialistas</h2>
+                
+                <!-- Partner Institutions Grid -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                    {partner_logos_html}
+                </div>
+
+                <!-- Institutional Testimonials -->
+                <div style="margin-top: 2rem;">
+                    <h3 style="text-align: center; color: #1B365D; margin-bottom: 1.5rem;">O que dizem os especialistas</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                        {institutional_testimonials_html}
+                    </div>
+                </div>
+            </div>
+        """.format(
+            partner_logos_html=''.join([
+                f"""
+                <div style="background: white; padding: 1rem; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">{partner['logo']}</div>
+                    <h4 style="margin: 0.5rem 0; color: #1B365D;">{partner['name']}</h4>
+                    <p style="margin: 0; color: #666; font-size: 0.9em;">{partner['description']}</p>
+                </div>
+                """ for partner in content['partner_institutions']
+            ]),
+            institutional_testimonials_html=''.join([
+                f"""
+                <div style="background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <p style="font-style: italic; margin-bottom: 1rem;">"{testimonial['text']}"</p>
+                    <div>
+                        <strong style="color: #1B365D;">{testimonial['author']}</strong>
+                        <br>
+                        <small style="color: #666;">{testimonial['role']}</small>
+                        <br>
+                        <small style="color: #666;">{testimonial['institution']}</small>
+                    </div>
+                </div>
+                """ for testimonial in content['institutional_testimonials']
+            ])
+        ), unsafe_allow_html=True)
+
         # Platform Promotion
         st.markdown('''
             <div style="background-color: #1B365D; color: white; padding: 2rem; border-radius: 8px; text-align: center; margin: 2rem 0;">

@@ -20,6 +20,26 @@
             "rating": 5
         }
     ],
+    "institutional_testimonials": [
+        {
+            "institution": "Instituto de Neurociência Educacional",
+            "text": "A plataforma Ativa-Mente demonstra resultados significativos no desenvolvimento cognitivo",
+            "author": "Dra. Mariana Silva",
+            "role": "Diretora de Pesquisa"
+        },
+        {
+            "institution": "Centro de Desenvolvimento Infantil",
+            "text": "Uma ferramenta inovadora que alia tecnologia e ciência no tratamento do TDAH",
+            "author": "Dr. João Santos",
+            "role": "Coordenador Clínico"
+        },
+        {
+            "institution": "Associação Brasileira de Psicopedagogia",
+            "text": "Resultados comprovados no desenvolvimento da atenção e foco em crianças",
+            "author": "Profa. Ana Beatriz Costa",
+            "role": "Presidente"
+        }
+    ],
     "platform_benefits": [
         {
             "title": "Jogos Interativos",
@@ -32,6 +52,28 @@
         {
             "title": "Suporte Personalizado",
             "description": "Dicas diárias, histórias de sucesso e exercícios adaptados ao perfil"
+        }
+    ],
+    "partner_institutions": [
+        {
+            "name": "Instituto de Neurociência",
+            "logo": "🧠",
+            "description": "Parceiro em Pesquisa"
+        },
+        {
+            "name": "Sociedade Brasileira de Pediatria",
+            "logo": "👨‍⚕️",
+            "description": "Recomendado por Especialistas"
+        },
+        {
+            "name": "Centro de Inovação em Educação",
+            "logo": "🎓",
+            "description": "Validado por Educadores"
+        },
+        {
+            "name": "Associação de Psicologia Infantil",
+            "logo": "🎯",
+            "description": "Aprovado por Psicólogos"
         }
     ],
     "daily_tips": [
