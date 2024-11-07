@@ -2,19 +2,23 @@
 .stApp {
     max-width: 800px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1.5rem;  /* Reduced from 2rem */
 }
 
 /* Content spacing */
 .block-container {
-    padding-top: 2rem;
+    padding-top: 1.5rem;  /* Reduced from 2rem */
     max-width: 800px;
     margin: 0 auto;
 }
 
 /* Progress bar styling */
+div.stProgress {
+    margin-bottom: 1rem;
+}
+
 div.stProgress > div > div {
-    height: 10px;
+    height: 8px;  /* Smaller height */
     background-color: #e9ecef;
     border-radius: 5px;
 }
@@ -30,7 +34,7 @@ div.stButton > button {
     font-size: 16px;
     font-weight: 500;
     transition: all 0.3s ease;
-    margin: 1rem 0;
+    margin: 0.75rem 0;  /* Reduced from 1rem */
     background-color: #1B365D;
     color: white;
 }
@@ -56,43 +60,44 @@ div.stButton > button:hover {
 /* Add container styling */
 .content-container {
     background: white;
-    padding: 2rem;
+    padding: 1.5rem;  /* Reduced from 2rem */
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    margin: 1rem 0;
-    margin-bottom: 5rem; /* Add space for fixed navigation */
+    margin: 0.5rem 0;  /* Reduced from 1rem */
+    margin-bottom: 5rem;
 }
 
 /* Centered headers */
 h1, h2, h3 {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;  /* Reduced from 1.5rem */
 }
 
+/* Clean up other components */
 .testimonial {
-    padding: 1.5rem;
+    padding: 1.25rem;  /* Reduced from 1.5rem */
     border-radius: 8px;
     background-color: #FFFFFF;
-    margin: 1rem 0;
+    margin: 0.75rem 0;  /* Reduced from 1rem */
     border: 2px solid #1B365D;
     text-align: center;
 }
 
 .benefit-card {
     background-color: #FFFFFF;
-    padding: 1.5rem;
+    padding: 1.25rem;  /* Reduced from 1.5rem */
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(27,54,93,0.1);
-    margin: 1rem 0;
+    margin: 0.75rem 0;  /* Reduced from 1rem */
     border-left: 4px solid #FFA500;
     text-align: center;
 }
 
 .feedback-box {
-    padding: 1.5rem;
+    padding: 1.25rem;  /* Reduced from 1.5rem */
     border-radius: 8px;
     background-color: #FFFFFF;
-    margin: 1rem 0;
+    margin: 0.75rem 0;  /* Reduced from 1rem */
     border-left: 4px solid #4CAF50;
     text-align: center;
 }
@@ -106,11 +111,11 @@ div.stRadio > div {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;  /* Reduced from 1rem */
 }
 
 div.stRadio label {
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.25rem;  /* Reduced horizontal padding */
     background-color: #f8f9fa;
     border-radius: 20px;
     width: 100%;
@@ -126,8 +131,8 @@ div.stRadio label:hover {
 /* Chart container styling */
 .chart-container {
     background-color: #FFFFFF;
-    padding: 1.5rem;
+    padding: 1.25rem;  /* Reduced from 1.5rem */
     border-radius: 8px;
-    margin: 1.5rem 0;
+    margin: 1rem 0;  /* Reduced from 1.5rem */
     box-shadow: 0 2px 4px rgba(27,54,93,0.1);
 }

@@ -126,14 +126,12 @@ content_container = st.empty()
 feedback_container = st.empty()
 navigation_container = st.empty()
 
-# Progress bar
-st.progress(progress)
-
 # Main content
 if st.session_state.step == 0:
     with st.container():
         st.markdown('<div class="content-container">', unsafe_allow_html=True)
-        st.markdown(f"<h1 style='text-align: center; font-size: 24px;'>{content['intro']['title']}</h1>", unsafe_allow_html=True)
+        st.progress(progress)
+        st.markdown(f"<h1 style='text-align: center; font-size: 24px; margin-top: 1rem;'>{content['intro']['title']}</h1>", unsafe_allow_html=True)
         st.markdown(f"<p style='text-align: center; margin: 1rem 0;'>{content['intro']['description']}</p>", unsafe_allow_html=True)
         st.markdown('</div>', unsafe_allow_html=True)
     
@@ -147,7 +145,8 @@ elif 1 <= st.session_state.step <= len(questions):
     
     with st.container():
         st.markdown('<div class="content-container">', unsafe_allow_html=True)
-        st.markdown(f"<h2 style='text-align: center; font-size: 20px;'>Pergunta {st.session_state.step} de {len(questions)}</h2>", unsafe_allow_html=True)
+        st.progress(progress)
+        st.markdown(f"<h2 style='text-align: center; font-size: 20px; margin-top: 1rem;'>Pergunta {st.session_state.step} de {len(questions)}</h2>", unsafe_allow_html=True)
         st.markdown(f"<p style='text-align: center; margin: 1rem 0;'>{question['text']}</p>", unsafe_allow_html=True)
         
         current_value = st.session_state.responses.get(question['id'], None)
@@ -188,6 +187,7 @@ elif st.session_state.step == len(questions) + 1:
     
     with st.container():
         st.markdown('<div class="content-container">', unsafe_allow_html=True)
+        st.progress(progress)
         st.markdown("<h1 style='text-align: center; font-size: 24px;'>Resultados da Avaliação</h1>", unsafe_allow_html=True)
         st.markdown("<h2 style='text-align: center; font-size: 20px; margin: 2rem 0;'>Análise por Área</h2>", unsafe_allow_html=True)
         
@@ -241,6 +241,7 @@ elif st.session_state.step == len(questions) + 1:
 elif st.session_state.step == len(questions) + 2:
     with st.container():
         st.markdown('<div class="content-container">', unsafe_allow_html=True)
+        st.progress(progress)
         st.markdown("<h1 style='text-align: center; font-size: 24px;'>Depoimentos de Pais</h1>", unsafe_allow_html=True)
         
         for testimonial in content['testimonials']:
